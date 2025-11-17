@@ -42,7 +42,7 @@ exports.registerUser = async (req, res) => {
                     await user.save();
 
                     await transporter.sendMail({
-                              from: "gtest3681@gmail.com"
+                              from: "gtest3681@gmail.com",
                               to: email,
                               subject: "Your OTP Verification Code",
                               text: `Your OTP is ${otp}. It will expire in 5 minutes.`
