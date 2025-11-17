@@ -9,14 +9,14 @@ console.log("EMAIL_USER:", process.env.EMAIL_USER);
 console.log("EMAIL_PASS:", process.env.EMAIL_PASS ? "Loaded ✅" : "❌ Not Loaded");
 
 const transporter = nodemailer.createTransport({
-          host: 'smtp-relay.brevo.com',
-            port: 587,
-            secure: false,
-            auth: {
-                user: "shubhamsati.real@gmail.com",
-                pass: "fVdzWFO2YZM80LTN",
-                //pass: "Indic123@"
-            },
+           service: "gmail",
+          port: 587,
+          secure: false,
+          requireTLS: true,
+          auth: {
+            user: "gtest3681@gmail.com",
+            pass: "jbiwkldgooalvtgj",
+          },
 
 });
 
@@ -42,7 +42,7 @@ exports.registerUser = async (req, res) => {
                     await user.save();
 
                     await transporter.sendMail({
-                              from: process.env.EMAIL_USER,
+                              from: "gtest3681@gmail.com"
                               to: email,
                               subject: "Your OTP Verification Code",
                               text: `Your OTP is ${otp}. It will expire in 5 minutes.`
