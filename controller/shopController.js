@@ -132,3 +132,24 @@ exports.createShopQR = async (req, res) => {
         res.status(500).json({ success: false, error: err.message });
     }
 };
+
+
+exports.getVendorShops = async (req, res) => {
+  try {   
+    const user_id = req.user.id;
+    const getShop = await Shop.find({user:user_id});
+    const result ={
+        message : "user shop get succed",
+        data : getShop
+    }
+    
+    return res.status(200).json(result);
+  } 
+  catch (error) {
+    console.log("Error in getVendorShops:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Server error"
+    });
+  }
+};

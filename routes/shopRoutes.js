@@ -10,7 +10,8 @@ const {
           updateShop,
           addShopImages,
           deleteShopImage,
-          createShopQR
+          createShopQR,
+          getVendorShops
 } = require("../controller/shopController");
 
 // Create Shop with logo + images
@@ -37,6 +38,7 @@ router.post(
 
 // Delete image
 router.delete("/delete-image/:imageId", Vendor_protect, deleteShopImage);
+router.get("/get",Vendor_protect,getVendorShops);
 router.get("/qr/:shopId", createShopQR);
 
 module.exports = router;
