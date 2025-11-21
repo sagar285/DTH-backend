@@ -8,6 +8,20 @@ const generateQR = require("../utils/generateQR");
 exports.createShop = async (req, res) => {
           try {
                     const { shopName, phone, shopAddress } = req.body;
+                    const existingShop = await Shop.findOne({
+                                $or: [
+                                    { shopName: shopName.trim() },
+                                    { phone: phone.trim() }
+                                ]
+                            });
+
+                    if (existingShop) {
+                        return res.status(400).json({
+                            success: false,
+                            message: "Shop with same name or phone already exists"
+                              });
+                      }
+                    
 
                     let logoPath = "";
                     let imageArray = [];

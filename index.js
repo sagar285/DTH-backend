@@ -1,7 +1,7 @@
 const dotenv = require("dotenv");
 dotenv.config();
 const express = require("express");
-
+const path = require("path");
 const cors = require("cors");
 const connectDB = require("./config/db"); // database connection
 const authRoutes = require("./routes/authRoutes"); // import auth routes
@@ -32,6 +32,9 @@ app.get("/", (req, res) => {
           res.send("DTH Backend is running 🚀");
 });
 
+
+//uploads folder public
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // ✅ Use authentication routes
 app.use("/api/auth", authRoutes);
 
